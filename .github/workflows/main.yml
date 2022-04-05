@@ -1,0 +1,105 @@
+# Questa è una prova di pull condizionato ad una chiave utente e una push condizionata al controllo dei tes
+
+name: Android CI Testing prima di push
+on: 
+  push:
+    branches: [ master, main ]
+  pull_request: 
+    branches:  [ master, main ]
+jobs: 
+  build: 
+    runs-on: macOS-latest
+    permissions:
+           checks: write
+           contents: read
+           issues: read
+           pull-requests: write
+    strategy:
+      matrix:
+        java_version: [11]
+        api-level: [29]
+        arch: [x86]
+        
+    steps:
+    
+      - name: Install coreutils for macOS
+        run: brew install coreutils
+        
+      - uses: malinskiy/action-android/install-sdk@release/0.0.8  
+        
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      
+      - name: Check Gradle checksum
+        run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
+        
+      - name: Install JDK ${{ matrix.java_version }}
+        uses: actions/setup-java@v1
+        with:
+          #java-distribution: temurin
+          java-version: ${{ matrix.java_version }}
+          
+      - name: Setup Android SDK Tools
+        uses: android-actions/setup-android@v2.0.2
+          
+      # Necessario oppure già compreso?
+      #- name: Install Android SDK
+      #  uses: malinskiy/action-android/install-sdk@release/0.0.3
+       
+      # Forse è questo il problema!!!! forse vanno aumentati i diritti e quindi semplicemente scompare messaggio di non poter portare
+      
+      #ORIGINARIAMENTE SOLO +x
+      - name: Change wrapper permissions
+        run: chmod +rwx ./gradlew
+        
+      # Forse e' un doppione di quello sopra
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+        
+      - name: Configure Gradle
+        # Initial gradle configuration, install dependencies, etc
+        run: ./gradlew help  
+     
+     # Prova a lanciare task locale che visualizza la directory dei risultati dei test
+      #- name: lancia task locale
+        #run: ./gradlew showDirs
+     
+     # Si può usare assemble invece di build (che è assemble + check)
+      - name: Build Project
+        run: ./gradlew assemble --stacktrace
+      
+      #vecchio test
+      - name: Run Instrumentation Tests (reactivecircus)
+        uses: reactivecircus/android-emulator-runner@v2.6.1
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: ${{ matrix.arch }}
+          target: default
+          #arch: x86
+          profile: Nexus 6
+          #script: ./gradlew connectedCheck --stacktrace  
+          script: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          
+      #vecchio vecchio test strumentale (nella versione iniziale era stato tolto )
+      #- name: Run Instrumentation Tests
+       # uses: vgaidarji/android-github-actions-emulator@v1.0.1
+        #with:
+          #cmd: ./gradlew connectedCheck --stacktrace
+          #api: 30
+          #tag: default
+          #abi: x86
+
+      - name: Reclaim Memory
+        run: ./gradlew --stop && jps|grep -E 'KotlinCompileDaemon|GradleDaemon'| awk '{print $1}'| xargs kill -9
+        
+        #Adesso si fanno i check che abbiamo omesso in assemble - Vedi articolo per differenza tra check e test!!!!! check e' per test composti
+      #- name: Final Checks
+        #run: ./gradlew check --stacktrace
+        
+      - name: Upload APK
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/app-debug.apk
