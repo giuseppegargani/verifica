@@ -10,6 +10,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 import java.io.File
 import java.io.FileOutputStream
+import java.io.FileReader
 import java.lang.Exception
 
 /**
@@ -49,5 +50,18 @@ class ExampleInstrumentedTest {
         catch (exception: Exception){
             //Log.d("giuseppe", "Test $nameTest non riuscito!!! e ha generato una eccezione")
         }
+    }
+    @Test
+    fun B_verificaLettura(){
+        val context= InstrumentationRegistry.getInstrumentation().targetContext
+        val path: File = context.getExternalFilesDir(null)!!
+        val file = File(path, "giuseppe.txt")
+
+        val reader = FileReader(file)
+        val testo = reader.readText()
+        //Log.d("giuseppeLettura", "****** stringa letta $txt")
+        reader.close()
+        //Log.d("giuseppeLettura", "letto dentro la funzione $letto")
+        assertEquals("A_useAppContextTest successo", testo)
     }
 }
