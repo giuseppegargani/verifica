@@ -34,7 +34,9 @@ android {
     //adb -s emulator-5554 install myapp.apk
     //adb shell pm list instrumentation
     task eseguicopia (type: Exec) {
+        doLast {
             commandLine 'adb', 'devices'
+        }
     }
 
    /* task eseguicopia() {
