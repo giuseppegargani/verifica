@@ -33,7 +33,7 @@ android {
     //verificare installazione della strumentazione!!!!!!!!!!
     //adb -s emulator-5554 install myapp.apk
     //adb shell pm list instrumentation
-    task eseguicopia() {
+    task eseguicopia {
         exec {
             commandLine 'adb', 'devices'
         }
