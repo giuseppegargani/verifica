@@ -86,7 +86,7 @@ jobs:
           script: |
             ./gradlew connectedCheck --stacktrace
             adb devices
-            adb shell ls sdcard
+            adb shell ls sdcard/Android
           #script: ./gradlew connectedCheck --stacktrace
           #script: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks
         env:
