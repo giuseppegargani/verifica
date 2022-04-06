@@ -62,6 +62,10 @@ android {
             }
         }
 
+        task singolocomando (type: Exec){
+            commandLine 'adb', 'pull', 'sdcard/android/data/com.example.verifica/files/giuseppe.txt'
+        }
+
         /*doLast {
             exec {
                 commandLine 'adb', 'devices'
