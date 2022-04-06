@@ -61,9 +61,9 @@ android {
                 commandLine 'adb', 'devices'
             }
             exec {
-                commandLine 'adb', 'pull', 'sdcard/android/data/com.example.verifica/files/giuseppe.txt', '../'
+                commandLine 'adb', 'pull', 'sdcard/android/data/com.example.verifica/files/giuseppe.txt'
             }
-            String fileContents = new File('giuseppe.txt').text
+            String fileContents = new File('app/giuseppe.txt').text
             println(" Contenuto letto dal file: "+fileContents)
         }
     }
