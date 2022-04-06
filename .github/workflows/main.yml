@@ -90,8 +90,9 @@ jobs:
           #arch: x86
           profile: Nexus 6
           script: |
-            ./gradlew connectedCheck --stacktrace
+            ./gradlew connectedCheck
             adb shell pm list instrumentation
+            adb shell ls app\build\outputs\apk
             adb install app\build\outputs\apk\androidTest\debug\app-debug-androidTest.apk
             adb install app\build\outputs\apk\debug\app-debug.apk
             adb shell pm list instrumentation
