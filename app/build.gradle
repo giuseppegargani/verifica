@@ -30,12 +30,20 @@ android {
         jvmTarget = '1.8'
     }
 
+    task invocaLista (type: Exec) {
+        doLast {
+            commandLine 'adb', 'devices'
+        }
+    }
     //verificare installazione della strumentazione!!!!!!!!!!
     //adb -s emulator-5554 install myapp.apk
     //adb shell pm list instrumentation
     task eseguicopia () {
-        exec {
-            commandLine 'adb', 'devices'
+        doLast {
+            exec {
+                commandLine 'adb', 'devices'
+            }
+            //invocaLista
         }
     }
 
