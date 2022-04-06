@@ -63,7 +63,7 @@ jobs:
           #arguments: build  
         
       - name: Configure Gradle
-        # Initial gradle configuration, install dependencies, etc
+        # Initial gradle configuration, install dependencies, etc..
         run: ./gradlew help  
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test
