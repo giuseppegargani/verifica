@@ -30,20 +30,37 @@ android {
         jvmTarget = '1.8'
     }
 
-    task invocaLista (type: Exec) {
-        doLast {
-            commandLine 'adb', 'devices'
-        }
-    }
-    //verificare installazione della strumentazione!!!!!!!!!!
-    //adb -s emulator-5554 install myapp.apk
-    //adb shell pm list instrumentation
-    task eseguicopia () {
+    /*task invocaLista (type: Exec) {
         doLast {
             exec {
                 commandLine 'adb', 'devices'
             }
-            //invocaLista
+        }
+    }*/
+    //verificare installazione della strumentazione!!!!!!!!!!
+    //adb -s emulator-5554 install myapp.apk
+    //adb shell pm list instrumentation
+    task eseguicopia () {
+        doFirst {
+            exec {
+                commandLine 'adb', 'devices'
+            }
+            exec {
+                commandLine 'adb', 'shell', 'pm', 'list', 'instrumentation'
+            }
+            exec {
+                commandLine 'adb', 'shell', 'am', 'instrument', '-w', '-e', 'class', 'com.example.verifica.ExampleInstrumentedTest', 'com.example.verifica.test/androidx.test.runner.AndroidJUnitRunner'
+            }
+        }
+        doLast {
+            exec {
+                commandLine 'adb', 'devices'
+            }
+            exec {
+                commandLine 'adb', 'pull', 'sdcard/android/data/com.example.verifica/files/giuseppe.txt', '../'
+            }
+            String fileContents = new File('giuseppe.txt').text
+            println(" Contenuto letto dal file: "+fileContents)
         }
     }
 
