@@ -85,7 +85,8 @@ jobs:
           profile: Nexus 6
           script: |
             ./gradlew connectedCheck --stacktrace
-            ./gradlew devices
+            ./gradlew adb devices
+            ./gradlew adb ls sdcard/android/data/com.example.verifica/files
           #script: ./gradlew connectedCheck --stacktrace
           #script: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks
         env:
