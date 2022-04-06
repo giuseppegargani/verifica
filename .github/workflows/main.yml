@@ -63,7 +63,7 @@ jobs:
           #arguments: build  
         
       - name: Configure Gradle
-        # Initial gradle configuration, install dependencies, etc
+        # Initial gradle configuration, install dependencies, etc..
         run: ./gradlew help  
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test
@@ -73,6 +73,12 @@ jobs:
      # Si può usare assemble invece di build (che è assemble + check)
       - name: Build Project
         run: ./gradlew assemble --stacktrace
+        
+         # Fa la build con sistema nuovo
+      - name: Instrumented check
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: connectedCheck
       
       #vecchio test
       - name: Run Instrumentation Tests (reactivecircus)
@@ -83,7 +89,10 @@ jobs:
           target: default
           #arch: x86
           profile: Nexus 6
-          script: ./gradlew eseguicopia
+          script: |
+            ./gradlew connectedCheck --stacktrace
+            adb devices
+            adb shell ls sdcard/Android/data
           #script: ./gradlew connectedCheck --stacktrace
           #script: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks
         env:
