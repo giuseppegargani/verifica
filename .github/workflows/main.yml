@@ -77,8 +77,7 @@ jobs:
           target: default
           #arch: x86
           profile: Nexus 6
-          script: ./gradlew eseguicopia
-          #script: ./gradlew connectedCheck --stacktrace
+          script: ./gradlew connectedCheck --stacktrace
           #script: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'

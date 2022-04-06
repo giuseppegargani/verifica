@@ -33,22 +33,22 @@ android {
     //verificare installazione della strumentazione!!!!!!!!!!
     //adb -s emulator-5554 install myapp.apk
     //adb shell pm list instrumentation
-    task eseguicopia() {
-        /*doLast {
+   /* task eseguicopia() {
+        doLast {
             exec {
                 commandLine 'adb', 'shell'
             }
             exec {
                 commandLine 'ls'
-            }*/
+            }
         //esegue il comando
         //commandLine 'adb', 'shell', 'am', 'instrument', '-w', '-e', 'class', 'com.example.verifica.ExampleInstrumentedTest', 'com.example.verifica.test/androidx.test.runner.AndroidJUnitRunner'//, '&&', 'adb', 'shell', 'cat', 'sdcard/android/data/com.example.tests_vari/files/giuseppe.txt'
         //commandLine 'adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner && adb pull sdcard/android/data/com.example.tests_vari/files/giuseppe.txt'
-            /*exec {
+        *exec {
                 //adb -s emulator-5554 install myapp.apk
                 //adb shell pm list instrumentation
                 commandLine 'adb', 'devices'
-            }*/
+            }
         exec {
             commandLine 'adb','shell', 'pm', 'list', 'instrumentation'
         }
@@ -66,7 +66,7 @@ android {
             String fileContents = new File('giuseppe.txt').text
             println(fileContents)
         }
-    }
+    }*/
 
 
 }
