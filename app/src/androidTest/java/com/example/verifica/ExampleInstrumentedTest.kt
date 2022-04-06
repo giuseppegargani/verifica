@@ -42,7 +42,7 @@ class ExampleInstrumentedTest {
             val file = File(path, "giuseppe.txt")
             val stream = FileOutputStream(file)
             stream.use { stream ->
-                stream.write("A_useAppContextTest successo".toByteArray())
+                stream.write("Nome del test: A_useAppContextTest successo".toByteArray())
             }
             //scriviConsole("A_useAppContextTest")
             //Log.d("giuseppe", "Test $nameTest riuscito!!!")
@@ -62,6 +62,6 @@ class ExampleInstrumentedTest {
         //Log.d("giuseppeLettura", "****** stringa letta $txt")
         reader.close()
         //Log.d("giuseppeLettura", "letto dentro la funzione $letto")
-        assertEquals("A_useAppContextTest successo", testo)
+        assertEquals("Nome del test: A_useAppContextTest successo", testo)
     }
 }
