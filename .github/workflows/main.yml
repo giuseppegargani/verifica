@@ -105,6 +105,7 @@ jobs:
             adb pull sdcard/Android/data/com.example.verifica/files/giuseppe.txt
             ls 
             ls app
+            ./gradlew leggiReport
           #adb devices
           #adb shell ls sdcard/Android/data
           #script: ./gradlew connectedCheck --stacktrace
