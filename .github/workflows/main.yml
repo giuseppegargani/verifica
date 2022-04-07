@@ -102,7 +102,7 @@ jobs:
             adb shell am instrument -w -e class com.example.verifica.ExampleInstrumentedTest com.example.verifica.test/androidx.test.runner.AndroidJUnitRunner
             adb shell ls sdcard/Android/data/com.example.verifica/files
             adb shell cat sdcard/Android/data/com.example.verifica/files/giuseppe.txt
-            adb pull sdcard/Android/data/com.example.verifica/files/giuseppe.txt
+            adb pull sdcard/Android/data/com.example.verifica/files/giuseppe.txt app
             ls 
             ls app
             ./gradlew leggiReport
