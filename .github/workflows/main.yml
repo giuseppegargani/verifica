@@ -112,8 +112,9 @@ jobs:
           parola="eccomi"
           echo '::set-output name=documento::$(content)'
           echo '::set-output name=beppe::"eccomi"'
+          echo '::set-output name=elmira::$parola'
           
-      # e poi lo va a leggere!!!!    
+      # e poi lo va a leggere!!!! verificato che lo passa 
       # echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
       # echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
       # stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
@@ -121,6 +122,8 @@ jobs:
         run: |
           echo "${{steps.readJsonXFire.outputs.documento }}"
           echo "${{steps.readJsonXFire.outputs.beppe}}"
+          echo '${{steps.readJsonXFire.outputs.beppe}}'
+          echo "${{steps.readJsonXFire.outputs.elmira}}"
           
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
