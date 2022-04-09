@@ -97,6 +97,9 @@ jobs:
       # Leggi il file Json a video e immagazzina il contenuto in una variabile
       #commenti: # echo "valori: ${cat Example.Json}"
       # the following lines are only required for multi line json
+      # content="${content//'%'/'%25'}"
+      # content="${content//$'\n'/'%0A'}"
+      # content="${content//$'\r'/'%0D'}"
       - name: Read and Store JSON file ( for debug )
         id: readJSON2Firebase
         run: |
@@ -105,10 +108,7 @@ jobs:
           ls
           cat ./Example.Json
           content="$(cat Example.Json)"
-        # content="${content//'%'/'%25'}"
-        # content="${content//$'\n'/'%0A'}"
-        # content="${content//$'\r'/'%0D'}"
-        # echo "::set-output name=packageJson::$content"
+          echo "::set-output name=packageJson::$content"
           
       # e poi lo va a leggere!!!!    
       - name: Leggi 
