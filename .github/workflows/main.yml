@@ -104,10 +104,10 @@ jobs:
           ls ./
           ls
           cat ./Example.Json
-          content=${cat ./Example.json}
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
+        # content=${cat ./Example.json}
+        # content="${content//'%'/'%25'}"
+        # content="${content//$'\n'/'%0A'}"
+        # content="${content//$'\r'/'%0D'}"
         # echo "::set-output name=packageJson::$content"
           
       # e poi lo va a leggere!!!!    
