@@ -110,8 +110,9 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           content="giuseppe"
+          parola="eccomi"
           echo '::set-output name=documento::$content'
-          echo '::set-output name=beppe::"eccomi"'
+          echo '::set-output name=beppe::$parola'
           
       # e poi lo va a leggere!!!!    
       # echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
