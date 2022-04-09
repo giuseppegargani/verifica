@@ -111,7 +111,7 @@ jobs:
           content="${content//$'\r'/'%0D'}"
           content="giuseppe"
           parola="eccomi"
-          echo '::set-output name=documento::${{content}}'
+          echo '::set-output name=documento::$(content)'
           echo '::set-output name=beppe::${parola}'
           
       # e poi lo va a leggere!!!!    
