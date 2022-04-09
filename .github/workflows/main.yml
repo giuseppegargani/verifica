@@ -115,9 +115,10 @@ jobs:
           
       # e poi lo va a leggere!!!!    
       # echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
+      # echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
       - name: Leggi 
         run: |
-          echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
+          stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
           
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
