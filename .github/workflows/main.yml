@@ -102,7 +102,7 @@ jobs:
           ls ./
           ls
           cat ./Example.Json
-          echo "valori: ${cat Example.Json}"
+          # echo "valori: ${cat Example.Json}"
           content=${cat ./Example.json}
           # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
@@ -110,6 +110,8 @@ jobs:
           content="${content//$'\r'/'%0D'}"
           # end of optional handling for multi line json
           echo "::set-output name=packageJson::$content"
+          
+      # e poi lo va a leggere!!!!    
       - name: Leggi 
         run: |
           echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
