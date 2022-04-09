@@ -133,7 +133,7 @@ jobs:
           path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
           #value: ${{ fromJSON(example.json)}}
-          value: "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
+          value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
