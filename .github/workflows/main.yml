@@ -104,7 +104,7 @@ jobs:
           #databaseType: firestore
           path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
-          value: "example.json"
+          value: example.json
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test
       #- name: lancia task locale
