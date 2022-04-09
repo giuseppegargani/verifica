@@ -120,15 +120,16 @@ jobs:
           echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
           
       # salvataggio del file json convertito in precedenza
-      #- name: Update latest version in realtime database
-        #id: readJSON
-        #with:
-          #credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
-          #databaseUrl: https://databasericette-beeb7.firebaseio.com
-          #databaseType: firestore
-          #path: "${{ github.repository }}"
+      - name: Update latest version in realtime database
+        id: readJSON
+        with:
+          credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+          databaseUrl: https://databasericette-beeb7.firebaseio.com
+          databaseType: firestore
+          path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
           #value: ${{ fromJSON(example.json)}}
+          value: "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
