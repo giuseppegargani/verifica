@@ -111,14 +111,15 @@ jobs:
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
-          echo "::set-output name=packageJson::$content"
+          echo ::set-output name=packageJson::$content
           
       # e poi lo va a leggere!!!!    
       # echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
       # echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
-      - name: Leggi 
+      # stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
+      - name: Testa Json 
         run: |
-          stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
+          echo ${{steps.readJSON2Firebase.outputs.packageJson }}
           
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
