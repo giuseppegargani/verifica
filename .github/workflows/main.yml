@@ -9,8 +9,6 @@ on:
 jobs: 
   build: 
     runs-on: macOS-latest
-    outputs:
-      documento: ${{ steps.readJSON2Firebase.outputs.packageJson }}
     permissions:
            checks: write
            contents: read
