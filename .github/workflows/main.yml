@@ -95,6 +95,8 @@ jobs:
           value: "${{ github.repository }}"
           
       # Leggi il file Json a video e immagazzina il contenuto in una variabile
+      #commenti: # echo "valori: ${cat Example.Json}"
+      # the following lines are only required for multi line json
       - name: Read and Store JSON file ( for debug )
         id: readJSON2Firebase
         run: |
@@ -102,9 +104,7 @@ jobs:
           ls ./
           ls
           cat ./Example.Json
-          # echo "valori: ${cat Example.Json}"
           content=${cat ./Example.json}
-          # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
