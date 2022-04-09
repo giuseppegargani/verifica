@@ -92,9 +92,23 @@ jobs:
           #Si devono mettere come segreto!!!
           value: "${{ github.repository }}"
           
+      # Leggi il file Json a video e immagazzina il contenuto in una variabile
+      - name: Read and Store JSON file ( for debug )
+        id: readJSON2Firebase
+        run: |
+          content=`cat ./Example.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
+      - run: |
+          echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
+          
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
-        uses: w9jds/firebase-trigger@master
+        id: readJSON
         #env:
           #GITHUB_CONTEXT: ${{ toJSON(github.repository) }}
           #NOME_REPOSITORY: 
