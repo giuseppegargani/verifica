@@ -101,7 +101,7 @@ jobs:
         with:
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
           databaseUrl: https://databasericette-beeb7.firebaseio.com
-          databaseType: firestore
+          #databaseType: firestore
           path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
           value: "example.json"
