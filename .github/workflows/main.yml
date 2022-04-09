@@ -109,7 +109,7 @@ jobs:
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
-          parola="eccomi"
+          parola="antonio"
           echo '::set-output name=documento::$(content)'
           echo '::set-output name=beppe::"eccomi"'
           echo '::set-output name=elmira::$parola'
