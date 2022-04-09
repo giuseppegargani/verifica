@@ -99,7 +99,7 @@ jobs:
       # content="${content//$'\n'/'%0A'}"
       # content="${content//$'\r'/'%0D'}"
       - name: Read and Store JSON file ( for debug )
-        id: readJson
+        id: readJsonXFire
         run: |
           ls app
           ls ./
@@ -119,8 +119,8 @@ jobs:
       # stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
       - name: Testa Json 
         run: |
-          echo "${{steps.readJson.outputs.documento }}"
-          echo "${{steps.readJson.outputs.beppe}}"
+          echo "${{steps.readJsonXFire.outputs.documento }}"
+          echo "${{steps.readJsonXFire.outputs.beppe}}"
           
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
