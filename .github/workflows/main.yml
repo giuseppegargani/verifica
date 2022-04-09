@@ -121,6 +121,7 @@ jobs:
           
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
+        uses: w9jds/firebase-trigger@master
         id: readJSON
         with:
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
