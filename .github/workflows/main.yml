@@ -96,7 +96,10 @@ jobs:
       - name: Read and Store JSON file ( for debug )
         id: readJSON2Firebase
         run: |
-          cat ./Exmple.Json
+          ls app
+          ls ./
+          ls
+          cat ./Example.Json
           echo "valori: ${cat Example.Json}"
           content=${cat ./Example.json}
           # the following lines are only required for multi line json
