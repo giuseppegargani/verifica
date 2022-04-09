@@ -106,7 +106,7 @@ jobs:
           #Si devono mettere come segreto!!!
           value: "${{ fromJSON(example.json)}}"
      
-     # Prova a lanciare task locale che visualizza la directory dei risultati dei test
+     # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
         #run: ./gradlew showDirs
      
