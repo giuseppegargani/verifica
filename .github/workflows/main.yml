@@ -36,6 +36,7 @@ jobs:
           bash --version
           brew install bash
           which -a bash
+          chsh -s /usr/local/bin/bash
           bash --version
       
       - name: Check Gradle checksum
