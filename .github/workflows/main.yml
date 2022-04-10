@@ -103,7 +103,7 @@ jobs:
           echo " $GITHUB_BEPPE"
           echo " $GITHUB_GIUSEPPE"
           echo " ${GITHUB_BEPPE}"
-          echo " ${{GITHUB_BEPPE}}"
+        # echo " ${{GITHUB_BEPPE}}"
           
       # Leggi il file Json a video e immagazzina il contenuto in una variabile
       #commenti: # echo "valori: ${cat Example.Json}"
