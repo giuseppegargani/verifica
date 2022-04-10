@@ -159,7 +159,9 @@ jobs:
           path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
           #value: ${{ fromJSON(example.json)}}
-          value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
+          #per firestore si deve inserire un file!!!!!!!
+          #value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
+          value: Example.json
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
