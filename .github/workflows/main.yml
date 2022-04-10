@@ -107,7 +107,8 @@ jobs:
           cat ./Example.Json
           echo '***************************************linea di separazione*********************************************'
           content="$(cat Example.Json)"
-          echo 'Json Object stringified is ${{ toJSON( ./Example.json) }}'
+          oggetto="${Example.Json}"
+          echo 'Json Object stringified is ${{ toJSON(oggetto) }}'
           echo '***************************************linea di separazione*********************************************'
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
