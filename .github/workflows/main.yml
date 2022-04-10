@@ -30,13 +30,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
         
-        #verifica la versione di bash
+        #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
+        #chsh -s /usr/local/bin/bash
       - name: check bash
         run: |
           bash --version
           brew install bash
           which -a bash
-          chsh -s /usr/local/bin/bash
+          STR="Hello World!"
+          echo $STR 
           bash --version
       
       - name: Check Gradle checksum
