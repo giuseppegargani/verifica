@@ -110,7 +110,7 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           parola="antonio"
-          echo 'verifica che la parola associata alla variabile parola e' un nome proprio: $parola'
+          echo 'verifica che la parola associata alla variabile parola un nome proprio: $parola'
           echo 'oppure $parola oppure ${parola}'
           echo '::set-output name=documento::$(content)'
           echo '::set-output name=beppe::"eccomi"'
