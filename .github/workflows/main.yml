@@ -32,15 +32,14 @@ jobs:
         
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
         #chsh -s /usr/local/bin/bash
+        #Si scarica e usa JQ per leggere Json in Bash
       - name: check bash
         run: |
           bash --version
-          brew install bash
-          which -a bash
+          brew install jq
           STR="Hello World!"
           echo $STR 
-          bash --version
-          value=`cat Example.json`
+          value=`jq Example.json`
           echo $value
       
       - name: Check Gradle checksum
