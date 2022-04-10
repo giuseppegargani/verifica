@@ -94,10 +94,11 @@ jobs:
           
       - name: Set env
         run: |
+          cat ./Example.json
           echo "GITHUB_BEPPE='eccomi'" >> $GITHUB_ENV
           echo 'GITHUB_GIUSEPPE="giuseppe"' >> $GITHUB_ENV
           JSON=$(cat ./Example.json)
-          echo 'GITHUB_JSON=$(cat ./Example.json)' >> $GITHUB_ENV
+          echo 'GITHUB_JSON=${(cat ./Example.json)}' >> $GITHUB_ENV
         #echo 'Job context is ${{ toJSON(job) }}'
         
       - name: Testa variabili ambientali
