@@ -116,21 +116,21 @@ jobs:
       # content="${content//'%'/'%25'}"
       # content="${content//$'\n'/'%0A'}"
       # content="${content//$'\r'/'%0D'}"
-      - name: Read and Store JSON file ( for debug )
-        id: readJsonXFire
-        run: |
-          ls app
-          ls ./
-          ls
-          cat ./Example.Json
-          echo '***************************************linea di separazione*********************************************'
-          content="$(cat Example.Json)"
-          oggetto="${Example.Json}"
-          echo '***************************************linea di separazione*********************************************'
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          parola="antonio"
+      #- name: Read and Store JSON file ( for debug )
+        #id: readJsonXFire
+        #run: |
+          #ls app
+          #ls ./
+          #ls
+          #cat ./Example.Json
+          #echo '***************************************linea di separazione*********************************************'
+          #content="$(cat Example.Json)"
+          #oggetto="${Example.Json}"
+          #echo '***************************************linea di separazione*********************************************'
+          #content="${content//'%'/'%25'}"
+          #content="${content//$'\n'/'%0A'}"
+          #content="${content//$'\r'/'%0D'}"
+          #parola="antonio"
         #echo 'verifica che la parola associata alla variabile parola un nome proprio: $parola'
         #echo 'oppure $parola oppure ${parola}'
         #echo '::set-output name=documento::$(content)'
