@@ -29,6 +29,10 @@ jobs:
         
       - name: Checkout
         uses: actions/checkout@v2.3.4
+        
+        #verifica la versione di bash
+      - name: check bash
+        run: bash --versione
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
