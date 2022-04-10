@@ -40,6 +40,8 @@ jobs:
           STR="Hello World!"
           echo $STR 
           bash --version
+          value=`cat Example.json`
+          echo $value
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
