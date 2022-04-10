@@ -131,22 +131,22 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           parola="antonio"
-          echo 'verifica che la parola associata alla variabile parola un nome proprio: $parola'
-          echo 'oppure $parola oppure ${parola}'
-          echo '::set-output name=documento::$(content)'
-          echo '::set-output name=beppe::"eccomi"'
-          echo '::set-output name=elmira::$parola'
+        #echo 'verifica che la parola associata alla variabile parola un nome proprio: $parola'
+        #echo 'oppure $parola oppure ${parola}'
+        #echo '::set-output name=documento::$(content)'
+        #echo '::set-output name=beppe::"eccomi"'
+        #echo '::set-output name=elmira::$parola'
           
       # e poi lo va a leggere!!!! verificato che lo passa 
       # echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
       # echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
       # stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
-      - name: Testa Json 
-        run: |
-          echo " il valore del primo ${{steps.readJsonXFire.outputs.documento }}"
-          echo " il valore del secondo ${{steps.readJsonXFire.outputs.beppe}}"
-          echo ' il valore del terzo: ${{steps.readJsonXFire.outputs.beppe}}'
-          echo "il valore del quarto:  ${{steps.readJsonXFire.outputs.elmira}}"
+      #- name: Testa Json 
+        #run: |
+          #echo " il valore del primo ${{steps.readJsonXFire.outputs.documento }}"
+          #echo " il valore del secondo ${{steps.readJsonXFire.outputs.beppe}}"
+          #echo ' il valore del terzo: ${{steps.readJsonXFire.outputs.beppe}}'
+          #echo "il valore del quarto:  ${{steps.readJsonXFire.outputs.elmira}}"
           
       # salvataggio del file json convertito in precedenza
       - name: Update latest version in realtime database
