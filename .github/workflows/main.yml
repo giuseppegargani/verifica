@@ -168,13 +168,16 @@ jobs:
         with:
           credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
           databaseUrl: https://databasericette-beeb7.firebaseio.com
-          databaseType: firestore
+          #databaseType: firestore
           path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
           #value: ${{ fromJSON(example.json)}}
           #per firestore si deve inserire un file!!!!!!!
           #value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
-          value: Example.json
+          run: |
+            value=`cat Example.json`
+            echo $value
+          value: $value
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
