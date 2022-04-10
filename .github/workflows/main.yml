@@ -32,7 +32,11 @@ jobs:
         
         #verifica la versione di bash
       - name: check bash
-        run: bash --version
+        run: |
+          bash --version
+          brew install bash
+          which -a bash
+          bash --version
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
