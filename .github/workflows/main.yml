@@ -96,6 +96,8 @@ jobs:
         run: |
           echo "GITHUB_BEPPE='eccomi'" >> $GITHUB_ENV
           echo 'GITHUB_GIUSEPPE="giuseppe"' >> $GITHUB_ENV
+          echo 'GITHUB_JSON=${{toJSON(Example.json)}}' >> $GITHUB_ENV
+        #echo 'Job context is ${{ toJSON(job) }}'
         
       - name: Testa variabili ambientali
         run: |
@@ -103,6 +105,7 @@ jobs:
           echo " $GITHUB_BEPPE"
           echo " $GITHUB_GIUSEPPE"
           echo " ${GITHUB_BEPPE}"
+          echo " $GITHUB_JSON"
         # echo " ${{GITHUB_BEPPE}}"
           
       # Leggi il file Json a video e immagazzina il contenuto in una variabile
