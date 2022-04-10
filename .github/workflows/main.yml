@@ -92,6 +92,12 @@ jobs:
           #Si devono mettere come segreto!!!
           value: "${{ github.repository }}"
           
+      - name: Set env
+        run: echo "GITHUB_BEPPE=eccomi" >> $GITHUB_ENV
+        
+      - name: Testa variabili ambientali
+        run: echo $GITHUB_BEPPE
+          
       # Leggi il file Json a video e immagazzina il contenuto in una variabile
       #commenti: # echo "valori: ${cat Example.Json}"
       # the following lines are only required for multi line json
