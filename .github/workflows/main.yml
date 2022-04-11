@@ -36,10 +36,14 @@ jobs:
         #brew install jq   e si usa per leggere alcuni nodi di JSON!!!!
         #che io sappia non si puo' mettere il commento intralinea!! e la pipeline input e output sono collegati!!
         # echo `::set-output name=elmira::$value`
+        #Crea un file Json (invece di reindirizzarlo) e lo assegna ad una variabile!!!!!
       - name: check bash
         id: prova
         run: |
           echo 'Job context is ${{ toJSON(job) }}'
+          fileJson = ${{toJson(job}}
+          echo "valore creato $fileJson"
+          echo 'valore creato $filejson'
           ls
           echo "$PATH"
           bash --version
