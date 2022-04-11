@@ -34,6 +34,8 @@ jobs:
         #chsh -s /usr/local/bin/bash
         #Si scarica e usa JQ per leggere Json in Bash
         #brew install jq   e si usa per leggere alcuni nodi di JSON!!!!
+        #che io sappia non si puo' mettere il commento intralinea!! e la pipeline input e output sono collegati!!
+        # echo `::set-output name=elmira::$value`
       - name: check bash
         id: prova
         run: |
@@ -44,10 +46,11 @@ jobs:
           value=`cat Example.json`
           echo $value
           echo "$value"
-          echo "::set-output name=elmira::$(`cat Example.json`)"
+          echo "document=GIALLLO" >> $GITHUB_ENV
           
+      # echo " il valore del primo ${{steps.prova.outputs.elmira }}"
       - name: Testa Outputs
-        run: echo " il valore del primo ${{steps.prova.outputs.elmira }}"
+        run: echo "${{env.document}}"
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
@@ -248,8 +251,8 @@ jobs:
       #- name: Final Checks
         #run: ./gradlew check --stacktrace
         
-      - name: Upload APK
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          name: apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+      #- name: Upload APK
+        #uses: actions/upload-artifact@v2.2.4
+        #with:
+          #name: apk
+          #path: app/build/outputs/apk/debug/app-debug.apk
