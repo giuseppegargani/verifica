@@ -39,6 +39,7 @@ jobs:
       - name: check bash
         id: prova
         run: |
+          echo 'Job context is ${{ toJSON(job) }}'
           ls
           echo "$PATH"
           bash --version
@@ -46,7 +47,6 @@ jobs:
           STR="Hello World!"
           echo $STR 
           value=`cat Example.json`
-          echo 'Job context is ${{ toJSON(job) }}'
           echo $value
           echo "$value"
           echo document=GIALLLO >> $GITHUB_ENV
