@@ -204,6 +204,7 @@ jobs:
           #echo "il valore del quarto:  ${{steps.readJsonXFire.outputs.elmira}}"
           
       # salvataggio del file json convertito in precedenza
+      # comando SCP!!!!!!
       - name: Update latest version in realtime database
         uses: w9jds/firebase-trigger@master
         id: readJSON
@@ -216,7 +217,7 @@ jobs:
           #value: ${{ fromJSON(example.json)}}
           #per firestore si deve inserire un file!!!!!!!
           #value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
-          value: scp Example.json
+          value: ${{env.FILE}}
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
