@@ -30,6 +30,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
         
+        # fromJSON() converts a string into a JSON object or value
+      - name: From JSON
+        env: 
+         ${{ fromJSON('{"FAVORITE_FRUIT":"APPLE", "FAVORITE_COLOR":"BLUE"}') }}
+        run: echo "I would like a ${FAVORITE_COLOR} ${FAVORITE_FRUIT}"
+        
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
         #chsh -s /usr/local/bin/bash
         #Si scarica e usa JQ per leggere Json in Bash
@@ -55,6 +61,7 @@ jobs:
           echo "$value"
           echo document=GIALLLO >> $GITHUB_ENV
           echo scritto=eccomi qua $value >> $GITHUB_ENV
+          
           
       # echo " il valore del primo ${{steps.prova.outputs.elmira }}"
       - name: Testa Outputs
