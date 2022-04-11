@@ -39,6 +39,8 @@ jobs:
       - name: check bash
         id: prova
         run: |
+          ls
+          echo "$PATH"
           bash --version
           brew install jq
           STR="Hello World!"
