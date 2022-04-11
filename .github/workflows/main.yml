@@ -44,7 +44,7 @@ jobs:
           value=`cat Example.json`
           echo $value
           echo "$value"
-          echo `::set-output name=elmira::$value`
+          echo `::set-output name=elmira::$(cat Example.json)`
           
       - name: Testa Outputs
         run: echo " il valore del primo ${{steps.prova.outputs.elmira }}"
