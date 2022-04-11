@@ -51,8 +51,7 @@ jobs:
          test -f ./Example.json && echo "$FILE exists."
          
       - name: Verifica lettura del file
-        run: | 
-         `cat ${{env.FILE}}` 
+        run: cat ${{env.FILE}}
        # echo "Il valore del file letto e' il seguente  ${{env.FILE}} e testo $TESTO"
         
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
