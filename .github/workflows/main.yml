@@ -38,6 +38,10 @@ jobs:
         
       - name: Controlla se il file esiste e esegui una serie di istruzioni
         run: |
+         FILE=Example.json
+         if [ -f "$FILE" ]; then echo "$FILE exists."
+         else echo "$FILE does not exist."
+         fi
          test -f /etc/resolv.conf && echo "$FILE exists."
          test -f Exampl.json && echo "$FILE exists."
          test -f ./Example.json && echo "$FILE exists."
