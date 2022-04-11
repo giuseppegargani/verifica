@@ -43,8 +43,8 @@ jobs:
          else echo "$FILE does not exist."
          fi
          FILE2=Exampl.json
-         if [ -f "$FILE" ]; then echo "$FILE exists."
-         else echo "$FILE does not exist."
+         if [ -f "$FILE2" ]; then echo "$FILE2 exists."
+         else echo "$FILE2 does not exist."
          fi
          test -f /etc/resolv.conf && echo "$FILE exists."
          test -f Exampl.json && echo "$FILE exists."
