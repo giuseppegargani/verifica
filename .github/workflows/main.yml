@@ -50,7 +50,7 @@ jobs:
           
       # echo " il valore del primo ${{steps.prova.outputs.elmira }}"
       - name: Testa Outputs
-        run: echo "${{env.document}}"
+        run: echo "Il valore della variabile e' il seguente ${{env.document}}"
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
