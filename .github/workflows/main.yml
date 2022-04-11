@@ -52,8 +52,8 @@ jobs:
          
       - name: Verifica lettura del file
         run: | 
-         T£STO= `cat ${{env.FILE}}` 
-         echo "Il valore del file letto e' il seguente  ${{env.FILE}} e testo $TESTO"
+         `cat ${{env.FILE}}` 
+       # echo "Il valore del file letto e' il seguente  ${{env.FILE}} e testo $TESTO"
         
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
         #chsh -s /usr/local/bin/bash
