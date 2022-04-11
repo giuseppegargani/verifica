@@ -41,7 +41,7 @@ jobs:
         id: prova
         run: |
           echo 'Job context is ${{ toJSON(job) }}'
-          fileJson = ${{toJson(job)}}
+          fileJson = ` toJson(job) `
           echo "valore creato $fileJson"
           echo 'valore creato $filejson'
           ls
