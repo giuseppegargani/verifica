@@ -37,8 +37,10 @@ jobs:
         #run: echo "I would like a ${FAVORITE_COLOR} ${FAVORITE_FRUIT}"
         
       - name: Controlla se il file esiste e esegui una serie di istruzioni
-        run: test -f /etc/resolv.conf && echo "$FILE exists."
-        
+        run: |
+         test -f /etc/resolv.conf && echo "$FILE exists."
+         test -f Example.json && echo "$FILE exists."
+         test -f ./Example.json && echo "$FILE exists."
         
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
         #chsh -s /usr/local/bin/bash
