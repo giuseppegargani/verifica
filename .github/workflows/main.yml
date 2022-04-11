@@ -190,7 +190,7 @@ jobs:
           #value: ${{ fromJSON(example.json)}}
           #per firestore si deve inserire un file!!!!!!!
           #value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
-          value: source Example.json
+          value: toJson(job)
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
