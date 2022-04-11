@@ -47,10 +47,13 @@ jobs:
           echo $value
           echo "$value"
           echo "document=GIALLLO" >> $GITHUB_ENV
+          echo "scritto=eccomi ${{env.document}}" >> $GITHUB_ENV
           
       # echo " il valore del primo ${{steps.prova.outputs.elmira }}"
       - name: Testa Outputs
-        run: echo "Il valore della variabile e' il seguente ${{env.document}}"
+        run: |
+          echo "Il valore della variabile e' il seguente  ${{env.document}}"
+          echo "e il valore della variabile complessa ${{env.scritto}}"
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
