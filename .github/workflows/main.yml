@@ -38,7 +38,7 @@ jobs:
         
       - name: Controlla se il file esiste e esegui una serie di istruzioni
         run: |
-         FILE=Example.json
+         echo FILE=Example.json >> $GITHUB_ENV
          if [ -f "$FILE" ]; then echo "$FILE exists."
          else echo "$FILE does not exist."
          fi
@@ -49,6 +49,9 @@ jobs:
          test -f /etc/resolv.conf && echo "$FILE exists."
          test -f Exampl.json && echo "$FILE exists."
          test -f ./Example.json && echo "$FILE exists."
+         
+      - name: Verifica lettura del file
+        run:  echo "Il valore del file letto e' il seguente  ${{env.FILE}}"
         
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
         #chsh -s /usr/local/bin/bash
