@@ -46,8 +46,8 @@ jobs:
           value=`cat Example.json`
           echo $value
           echo "$value"
-          echo "document=GIALLLO" >> $GITHUB_ENV
-          echo `scritto=eccomi qua $($value)` >> $GITHUB_ENV
+          echo document=GIALLLO >> $GITHUB_ENV
+          echo scritto=eccomi qua $value >> $GITHUB_ENV
           
       # echo " il valore del primo ${{steps.prova.outputs.elmira }}"
       - name: Testa Outputs
