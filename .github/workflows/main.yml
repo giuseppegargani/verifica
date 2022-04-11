@@ -35,6 +35,7 @@ jobs:
         #Si scarica e usa JQ per leggere Json in Bash
         #brew install jq   e si usa per leggere alcuni nodi di JSON!!!!
       - name: check bash
+        id: prova
         run: |
           bash --version
           brew install jq
@@ -43,6 +44,10 @@ jobs:
           value=`cat Example.json`
           echo $value
           echo "$value"
+          echo '::set-output name=elmira::$value'
+          
+      - name: Testa Outputs
+        run: echo " il valore del primo ${{steps.prova.outputs.elmira }}"
       
       - name: Check Gradle checksum
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
