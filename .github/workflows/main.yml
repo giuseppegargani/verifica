@@ -46,7 +46,7 @@ jobs:
           STR="Hello World!"
           echo $STR 
           value=`cat Example.json`
-          primoJson = `toJson(job)
+          primoJson = ${{toJson(job)}}
           echo $primoJson`
           echo $value
           echo "$value"
