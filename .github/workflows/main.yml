@@ -56,12 +56,12 @@ jobs:
        
        # proviamo a lanciare qualche comandi e documentazione (come da Cli)
        # deploy --only hosting
-      - name: Inizializzazione Firebase DB
-        uses: jonahsnider/firebase-action@1.0.7
-        with:
-          args: help
-        env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_CREDENTIALS }}
+      #- name: Inizializzazione Firebase DB
+        #uses: jonahsnider/firebase-action@1.0.7
+        #with:
+          #args: help
+        #env:
+          #GCP_SA_KEY: ${{ secrets.FIREBASE_CREDENTIALS }}
         
         #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
         #chsh -s /usr/local/bin/bash
