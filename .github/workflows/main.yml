@@ -214,19 +214,19 @@ jobs:
           
       # salvataggio del file json convertito in precedenza
       # comando SCP!!!!!!
-      - name: Update latest version in realtime database
-        uses: w9jds/firebase-trigger@master
-        id: readJSON
-        with:
-          credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
-          databaseUrl: https://databasericette-beeb7.firebaseio.com
-          databaseType: firestore
-          path: "${{ github.repository }}"
+      #- name: Update latest version in realtime database
+        #uses: w9jds/firebase-trigger@master
+        #id: readJSON
+        #with:
+          #credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+          #databaseUrl: https://databasericette-beeb7.firebaseio.com
+          #databaseType: firestore
+          #path: "${{ github.repository }}"
           #Si devono mettere come segreto!!!
           #value: ${{ fromJSON(example.json)}}
           #per firestore si deve inserire un file!!!!!!!
           #value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
-          value: ${{env.FILE}}
+          #value: ${{env.FILE}}
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
