@@ -8,7 +8,7 @@ on:
     branches:  [ master, main ]
 jobs: 
   build: 
-    runs-on: macOS-latest
+    runs-on:  ubuntu-latest
     permissions:
            checks: write
            contents: read
@@ -22,8 +22,8 @@ jobs:
         
     steps:
     
-      - name: Install coreutils for macOS
-        run: brew install coreutils
+      #- name: Install coreutils for macOS
+        #run: brew install coreutils
         
       - uses: malinskiy/action-android/install-sdk@release/0.0.8  
         
@@ -57,7 +57,7 @@ jobs:
        # proviamo a lanciare qualche comandi e documentazione (come da Cli)
        # deploy --only hosting
       - name: Inizializzazione Firebase DB
-        uses: w9jds/firebase-action@master
+        uses: jonahsnider/firebase-action@1.0.7
         with:
           args: help
         env:
