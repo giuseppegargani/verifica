@@ -97,6 +97,7 @@ jobs:
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
         
       - name: Install JDK ${{ matrix.java_version }}
+        continue-on-error: true
         uses: actions/setup-java@v1
         with:
           #java-distribution: temurin
