@@ -94,6 +94,7 @@ jobs:
           echo "e il valore della variabile complessa ${{env.scritto}}"
       
       - name: Check Gradle checksum
+        continue-on-error: true
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
         
       - name: Install JDK ${{ matrix.java_version }}
