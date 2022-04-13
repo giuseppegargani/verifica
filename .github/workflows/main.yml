@@ -303,6 +303,13 @@ jobs:
         #with:
           #name: apk
           #path: app/build/outputs/apk/debug/app-debug.apk
+          
+      - name: upload test in Json file
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: test
+          path: app/giuseppe.txt
+      
   deploy:
     name: Deploy
     needs: build
