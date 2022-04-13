@@ -329,7 +329,7 @@ jobs:
      - name: Verifica File
        run: |
          ls
-         cat ./test.txt
-         cat test.txt
-         `cat test.txt`
+         cat ./giuseppe.txt
+         cat giuseppe.txt
+         `cat giuseppe.txt`
     
