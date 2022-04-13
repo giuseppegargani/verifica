@@ -8,7 +8,8 @@ on:
     branches:  [ master, main ]
 env:
   ## Sets environment variable
-  FILEREPORT: niente   
+  FILEREPORT: niente
+  FILE: NIENTE
 jobs: 
   build: 
     runs-on:  macOs-latest
@@ -273,7 +274,7 @@ jobs:
             ls 
             ls app
             ./gradlew leggiReport
-            echo FILEREPORT=giuseppe.txt >> $GITHUB_ENV
+            echo FILEREPORT=app/giuseppe.txt >> $GITHUB_ENV
           #adb devices
           #adb shell ls sdcard/Android/data
           #script: ./gradlew connectedCheck --stacktrace
@@ -313,5 +314,7 @@ jobs:
            pull-requests: write
     steps:
      - name: Verifica File
-       run: cat ${{env.FILE}}
+       run: |
+        cat ${{env.FILE}}
+        cat ${{env.FILEREPORT}}
     
