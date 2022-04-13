@@ -6,10 +6,10 @@ on:
     branches: [ master, main ]
   pull_request: 
     branches:  [ master, main ]
-env:
+#env:
   ## Sets environment variable
-  FILEREPORT: niente
-  FILE: NIENTE
+  #FILEREPORT: niente
+  #FILE: NIENTE
 jobs: 
   build: 
     runs-on:  macOs-latest
