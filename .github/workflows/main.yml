@@ -320,8 +320,16 @@ jobs:
            issues: read
            pull-requests: write
     steps:
+    
+     # carica artifact con risultati test per leggerlo ed inviarlo
+     - uses: actions/download-artifact@v2
+       with:
+        name: test
+    
      - name: Verifica File
        run: |
-        cat ${{env.FILE}}
-        cat ${{env.FILEREPORT}}
+         ls
+         cat ./test.txt
+         cat test.txt
+         `cat test.txt`
     
