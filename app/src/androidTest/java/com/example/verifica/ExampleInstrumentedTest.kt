@@ -2,8 +2,12 @@ package com.example.verifica
 
 import android.content.Context
 import android.util.Log
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.testwatcherlibrary.LoggerExample
+import com.example.testwatcherlibrary.TestWatcherExample
+import com.example.testwatcherlibrary.TestWatcherFrame
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -53,7 +57,7 @@ import org.junit.runners.model.Statement
     Rule implementa una istanza ogni volta che viene lanciato un test e questo test deve andare a modificare una variabile locale
     Ma si puo' anche creare una classe
     Vogliamo una classe che implementi una interfaccia e compia dei risultati!!
- */
+*/
 
 
 /**
@@ -62,7 +66,7 @@ import org.junit.runners.model.Statement
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class ExampleInstrumentedTest: TestWatcherFrame() {
     var watchedLog: String? = null
 
     //sono due VARIABILI CUSTOM (il nome si puo' cambiare)
@@ -77,9 +81,9 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.verifica", appContext.packageName)
     }*/
-    //si crea un oggetto TestWatcher per compiere delle azioni prima e dopo i tests!!!!
-    @get:Rule
-    public val watchman: TestRule? = MyTestWatcher()
+    //si crea un oggetto TestWatcher per compiere delle azioni prima e dopo i tests!!!!   LA LIBRERIA PRIMA ERA LA CLASSE MYTESTWATCHER
+    /*@get:Rule
+    public val watchman: TestRule? = TestWatcherExample()*/
     /*public val watchman: TestRule? = object : MyTestWatcher() {} : TestWatcher() {
 
         override fun apply(base: Statement?, description: Description?): Statement? {
@@ -111,6 +115,9 @@ class ExampleInstrumentedTest {
         }
     }*/
 
+    @get:Rule
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
     /*companion object {
         @ClassRule
         @JvmField
@@ -121,6 +128,8 @@ class ExampleInstrumentedTest {
 
     @Test
     fun A_useAppContext() {
+
+        LoggerExample.logMessage("giuseppeProva", "messaggio strumentale da libreria custom")
         //nameTest= "useAppContext"
         try {
             // Context of the app under test.
@@ -186,11 +195,12 @@ class TestListener: RunListener() {
     }*/
 }
 
+//Si e' aggiunta come libreria locale!!!!!
 /*e questo e' una classe che estende TestWatcher e scrive un file Json!!!! CLASSE OPEN!!!!!!
     ad ogni test si deve modifica un oggetto (aggiungendo o sottraendo degli elementi)
     come si fà per ereditarietà multiple?
  */
-open class MyTestWatcher() : TestWatcher() {
+/*open class MyTestWatcher() : TestWatcher() {
 
     //var successi: Int = 0
     //var fallimenti: Int = 0
@@ -213,4 +223,4 @@ open class MyTestWatcher() : TestWatcher() {
         println("FINITI I TESTS!!! e successi")
     }
 
-}
+}*/

@@ -140,6 +140,7 @@ android {
 
 }
 
+//FORSE DA TOGLIERE TESTIMPLEMENTATIONE E METTERE SOLO IMPLEMENTATION!!!!!!!!
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -149,4 +150,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //libreria di test!!!
+    implementation project(':testwatcherLibrary')
+    implementation 'junit:junit:4.+'
+    implementation 'androidx.test.ext:junit:1.1.3'
+    implementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

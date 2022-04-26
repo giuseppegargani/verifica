@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "verifica"
 include ':app'
+include ':testwatcherLibrary'
