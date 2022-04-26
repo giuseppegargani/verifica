@@ -1,4 +1,4 @@
-# Questa è una prova di pull condizionato ad una chiave utente e una push condizionata al controllo dei tes
+# Questa è una prova di pull condizionato ad una chiave utente e una push condizionata al controllo dei test
 
 name: Android CI Testing prima di push
 on: 
@@ -6,9 +6,13 @@ on:
     branches: [ master, main ]
   pull_request: 
     branches:  [ master, main ]
+#env:
+  ## Sets environment variable
+  #FILEREPORT: niente
+  #FILE: NIENTE
 jobs: 
   build: 
-    runs-on: macOS-latest
+    runs-on:  macOs-latest
     permissions:
            checks: write
            contents: read
@@ -22,18 +26,83 @@ jobs:
         
     steps:
     
-      - name: Install coreutils for macOS
-        run: brew install coreutils
+      #- name: Install coreutils for macOS
+        #run: brew install coreutils
         
       - uses: malinskiy/action-android/install-sdk@release/0.0.8  
         
       - name: Checkout
         uses: actions/checkout@v2.3.4
+        
+        # fromJSON() converts a string into a JSON object or value
+        # ${{ toJSON('{"FAVORITE_FRUIT" : "APPLE", "FAVORITE_COLOR" : "BLUE"}') }}
+      #- name: From JSON
+        #env: ${{ toJSON('{"FAVORITE_FRUIT": "APPLE", "FAVORITE_COLOR": "BLUE"}') }}
+        #run: echo "I would like a ${FAVORITE_COLOR} ${FAVORITE_FRUIT}"
+        
+      - name: Controlla se il file esiste e esegui una serie di istruzioni
+        run: |
+         echo FILE=Example.json >> $GITHUB_ENV
+         if [ -f "$FILE" ]; then echo "$FILE exists."
+         else echo "$FILE does not exist."
+         fi
+         FILE2=Exampl.json
+         if [ -f "$FILE2" ]; then echo "$FILE2 exists."
+         else echo "$FILE2 does not exist."
+         fi
+         test -f /etc/resolv.conf && echo "$FILE exists."
+         test -f Exampl.json && echo "$FILE exists."
+         test -f ./Example.json && echo "$FILE exists."
+         
+      - name: Verifica lettura del file
+        run: cat ${{env.FILE}}
+       # echo "Il valore del file letto e' il seguente  ${{env.FILE}} e testo $TESTO"
+       
+       # proviamo a lanciare qualche comandi e documentazione (come da Cli)
+       # deploy --only hosting
+      #- name: Inizializzazione Firebase DB
+        #uses: jonahsnider/firebase-action@1.0.7
+        #with:
+          #args: help
+        #env:
+          #GCP_SA_KEY: ${{ secrets.FIREBASE_CREDENTIALS }}
+        
+        #verifica la versione di bash - Ci vuole autorizzazione per cambiare versione di Bash Shell
+        #chsh -s /usr/local/bin/bash
+        #Si scarica e usa JQ per leggere Json in Bash
+        #brew install jq   e si usa per leggere alcuni nodi di JSON!!!!
+        #che io sappia non si puo' mettere il commento intralinea!! e la pipeline input e output sono collegati!!
+        # echo `::set-output name=elmira::$value`
+        #Crea un file Json (invece di reindirizzarlo) e lo assegna ad una variabile!!!!!
+      - name: check bash
+        id: prova
+        run: |
+          echo 'Job context is ${{ toJSON(job) }}'
+          ls
+          echo "$PATH"
+          bash --version
+          brew install jq
+          STR="Hello World!"
+          echo $STR 
+          value=`cat Example.json`
+          echo $value
+          echo "$value"
+          echo document=GIALLLO >> $GITHUB_ENV
+          echo scritto=eccomi qua $value >> $GITHUB_ENV
+          
+          
+      # echo " il valore del primo ${{steps.prova.outputs.elmira }}"
+      - name: Testa Outputs
+        run: |
+          echo "Il valore della variabile e' il seguente  ${{env.document}}"
+          echo "e il valore della variabile complessa ${{env.scritto}}"
       
       - name: Check Gradle checksum
+        continue-on-error: true
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ZacSweers/check-gradle-checksums/master/check-gradle-checksums.sh)"
         
       - name: Install JDK ${{ matrix.java_version }}
+        continue-on-error: true
         uses: actions/setup-java@v1
         with:
           #java-distribution: temurin
@@ -65,8 +134,107 @@ jobs:
       - name: Configure Gradle
         # Initial gradle configuration, install dependencies, etc..
         run: ./gradlew help  
+        
+       #Stampa per verificarne la correttezza e utili nel caso di problemi
+      - name: echo-default-env-variables
+        run: |
+            echo "Home: ${HOME}"
+            echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+            echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+            echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+            echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+            echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+            echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+            echo "GITHUB_SHA: ${GITHUB_SHA}"
+            echo "GITHUB_REF: ${GITHUB_REF}"
+            echo "GITHUB_BASE_REF: ${GITHUB_BASE_REF}"
+    
+      - name: Update latest version in realtime database
+        uses: w9jds/firebase-trigger@master
+        #env:
+          #GITHUB_CONTEXT: ${{ toJSON(github.repository) }}
+          #NOME_REPOSITORY: 
+        with:
+          credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+          databaseUrl: https://databasericette-beeb7.firebaseio.com
+          path: "${{ github.repository }}"
+          #Si devono mettere come segreto!!!
+          value: "${{ github.repository }}"
+          
+      # echo 'GITHUB_JSON=${(cat ./Example.json)}' >> $GITHUB_ENV
+      - name: Set env
+        run: |
+          cat ./Example.json
+          echo "GITHUB_BEPPE='eccomi'" >> $GITHUB_ENV
+          echo 'GITHUB_GIUSEPPE="giuseppe"' >> $GITHUB_ENV
+          JSON=$(cat ./Example.json)
+          echo GITHUB_JSON=$(Example.json) >> $GITHUB_ENV
+        #echo 'Job context is ${{ toJSON(job) }}'
+        
+      - name: Testa variabili ambientali
+        run: |
+          echo $GITHUB_BEPPE
+          echo " $GITHUB_BEPPE"
+          echo " $GITHUB_GIUSEPPE"
+          echo " ${GITHUB_BEPPE}"
+          echo " ${{env.GITHUB_JSON}}"
+        # echo " ${{GITHUB_BEPPE}}"
+          
+      # Leggi il file Json a video e immagazzina il contenuto in una variabile
+      #commenti: # echo "valori: ${cat Example.Json}"
+      # the following lines are only required for multi line json
+      # content="${content//'%'/'%25'}"
+      # content="${content//$'\n'/'%0A'}"
+      # content="${content//$'\r'/'%0D'}"
+      #- name: Read and Store JSON file ( for debug )
+        #id: readJsonXFire
+        #run: |
+          #ls app
+          #ls ./
+          #ls
+          #cat ./Example.Json
+          #echo '***************************************linea di separazione*********************************************'
+          #content="$(cat Example.Json)"
+          #oggetto="${Example.Json}"
+          #echo '***************************************linea di separazione*********************************************'
+          #content="${content//'%'/'%25'}"
+          #content="${content//$'\n'/'%0A'}"
+          #content="${content//$'\r'/'%0D'}"
+          #parola="antonio"
+        #echo 'verifica che la parola associata alla variabile parola un nome proprio: $parola'
+        #echo 'oppure $parola oppure ${parola}'
+        #echo '::set-output name=documento::$(content)'
+        #echo '::set-output name=beppe::"eccomi"'
+        #echo '::set-output name=elmira::$parola'
+          
+      # e poi lo va a leggere!!!! verificato che lo passa 
+      # echo "${{fromJson(steps.readJSON2Firebase.outputs.packageJson).version}}"
+      # echo "$(fromJson(steps.readJSON2Firebase.outputs.packageJson).version)"
+      # stringa = "${{steps.readJSON2Firebase.outputs.packageJson}}"
+      #- name: Testa Json 
+        #run: |
+          #echo " il valore del primo ${{steps.readJsonXFire.outputs.documento }}"
+          #echo " il valore del secondo ${{steps.readJsonXFire.outputs.beppe}}"
+          #echo ' il valore del terzo: ${{steps.readJsonXFire.outputs.beppe}}'
+          #echo "il valore del quarto:  ${{steps.readJsonXFire.outputs.elmira}}"
+          
+      # salvataggio del file json convertito in precedenza
+      # comando SCP!!!!!!
+      #- name: Update latest version in realtime database
+        #uses: w9jds/firebase-trigger@master
+        #id: readJSON
+        #with:
+          #credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+          #databaseUrl: https://databasericette-beeb7.firebaseio.com
+          #databaseType: firestore
+          #path: "${{ github.repository }}"
+          #Si devono mettere come segreto!!!
+          #value: ${{ fromJSON(example.json)}}
+          #per firestore si deve inserire un file!!!!!!!
+          #value: "$(fromJson(steps.readJson.outputs.packageJson).version)"
+          #value: ${{env.FILE}}
      
-     # Prova a lanciare task locale che visualizza la directory dei risultati dei test
+     # Prova a lanciare task locale che visualizza la directory dei risultati dei test 
       #- name: lancia task locale
         #run: ./gradlew showDirs
      
@@ -106,6 +274,7 @@ jobs:
             ls 
             ls app
             ./gradlew leggiReport
+            echo FILEREPORT=app/giuseppe.txt >> $GITHUB_ENV
           #adb devices
           #adb shell ls sdcard/Android/data
           #script: ./gradlew connectedCheck --stacktrace
@@ -129,8 +298,38 @@ jobs:
       #- name: Final Checks
         #run: ./gradlew check --stacktrace
         
-      - name: Upload APK
+      #- name: Upload APK
+        #uses: actions/upload-artifact@v2.2.4
+        #with:
+          #name: apk
+          #path: app/build/outputs/apk/debug/app-debug.apk
+          
+      - name: upload test in Json file
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: test
+          path: app/giuseppe.txt
+      
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+           checks: write
+           contents: read
+           issues: read
+           pull-requests: write
+    steps:
+    
+     # carica artifact con risultati test per leggerlo ed inviarlo
+     - uses: actions/download-artifact@v2
+       with:
+        name: test
+    
+     - name: Verifica File
+       run: |
+         ls
+         cat ./giuseppe.txt
+         cat giuseppe.txt
+         `cat giuseppe.txt`
+    
