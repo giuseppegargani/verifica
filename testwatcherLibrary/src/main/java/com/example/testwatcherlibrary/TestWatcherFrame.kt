@@ -34,6 +34,7 @@ open class TestWatcherFrame {
         fun afterClass() {
             Log.d("giuseppeRisultati", "terminata la classe!!!!!!!!!!!")
             println("terminata la classe!!!!!! e successi $testResultsStatus")
+            //funzione creata da Giuseppe
             createJson()
         }
 
@@ -52,9 +53,6 @@ open class TestWatcherFrame {
             val otherList = gson.fromJson<List<String>>(jsonString, sType)
             Log.d("giuseppeJson", "otherList $otherList")
         }
-
-        //per
-
 
     }
 

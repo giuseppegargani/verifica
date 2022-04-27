@@ -11,15 +11,20 @@ package com.example.testwatcherlibrary
     chiave: Stringa classe
     valore: Lista (array) di oggetti (stringa, Risultato)
 
-    Test: {[
+    Test: {
+    [
      {"Classe Uno": [ {"Test Uno": Risultato.successo } ] }
-     ]  }
+     ]
+     }
 
      List of TestClasses -> List of Methods -> Risultati
      Una DataClass con il metodo toJson viene convertito in un oggetto Json che mantiene come chiavi il nome delle proprieta' prestabilite
      se ad proprietà di una dataClasse viene associata una altra dataclass (si tratta di un Nested Object)  es: "Cliente uno": {nome: ..., cognome: ... }
 */
 
-data class TestClass (var nameTest: String? = null, var outcome: String? = null) {  }
+//oggetto che ha come valore una lista di
+data class TestClass (var listaClassi: MutableList<SingleClass>)
 
-data class SingleTest ( var nameTest: String? = null, var outcome: String? = null )
+data class SingleClass(var listaTests: MutableList<SingleTest>)
+
+data class SingleTest ( var nameTest: String, var outcome: String, var altriElementi: String? = null )

@@ -61,6 +61,8 @@ import org.junit.runner.Description
     MODELLO BASE:  oggetto Json con array di classi con array di oggetti {name: risultato}    array di classi di test, array di metodi di test
     MODELLO UN POCHINO PIU' ELABORATO:
     MODELLO PIU' ELABORATO:
+
+    Con Data class con Liste
  */
 
 //attualmente una classe che viene istanziata ad ogni singolo test!!! (e dovrebbe modificare una variabile esterna)
