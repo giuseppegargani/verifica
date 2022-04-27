@@ -35,6 +35,7 @@ open class TestWatcherFrame {
         @AfterClass
         @JvmStatic
         fun afterClass() {
+            Log.d("giuseppeRisultati", " nome Classe: ${javaClass.canonicalName}")
             Log.d("giuseppeRisultati", "terminata la classe!!!!!!!!!!!")
             println("terminata la classe!!!!!! e successi $testResultsStatus")
             //funzione creata da Giuseppe alla conclusione

@@ -45,6 +45,8 @@ import org.junit.runner.Description
     - tempi di esecuzione!!!!
     - (Run Listener e manifest)!!!!
     - JVMSTATIC e' inutile per Kotlin??
+
+    - SI METTE ANCHE UN ALTRO ELEMENTO OPZIONALE JSON PER OGNI TEST!!!!!
  */
 
 /* JSON!!!! Ci sono diversi metodi:
@@ -81,7 +83,7 @@ open class TestWatcherExample: TestWatcher() {
         super.succeeded(description)
         TestWatcherFrame.aggiungiSuccessi(TestWatcherFrame.TestResultStatus.SUCCESSFUL)
         Log.d("giuseppeRisultati", "nuovo TESTWATCHER!!!!!!!!!!!!!!!! ${description} ha avuto successo e nome ${description?.methodName}")
-        println("nuovo TESTWATCHER!!!!!!!!!!!!!!! ${description} ha avuto successo")
+        println("nuovo TESTWATCHER!!!!!!!!!!!!!!! ${description} ha avuto successo e nome classe ${description?.className}")
     }
 
     override fun failed(e: Throwable?, description: Description?) {
