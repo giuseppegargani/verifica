@@ -8,12 +8,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.testwatcherlibrary.LoggerExample
 import com.example.testwatcherlibrary.TestWatcherExample
 import com.example.testwatcherlibrary.TestWatcherFrame
+import org.junit.*
 
-import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
-import org.junit.ClassRule
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import org.junit.runner.notification.RunListener
@@ -23,40 +22,39 @@ import java.io.FileReader
 import java.lang.Exception
 import org.junit.rules.TestRule
 
-import org.junit.Rule
 import org.junit.internal.AssumptionViolatedException
 import org.junit.runners.model.Statement
 
 /*  COSE CHE FA' LA LIBRERIA:
     1 - Basta creare una istanza della classe della libreria come regola e stampa un resoconto!!!! in Json  (con i risultati dei testi e possibile annotazioni varie!!!)
         Di default vengono considerati tutti i tests!!!
- */
+*/
 
 /* STEPS:
     Libreria locale di test strumentale!!! con resoconto e poi remota e poi vediamo se la carica da Github actions
     1 - Classe TestWatcher che scrive un file json or Xml (con i risultati)!!!!
     2 - Libreria locale
     3 - libreria esterna remota
- */
+*/
 
 /* MA SI DEVE CANCELLARE IL MODULO PRINCIPALE OPPURE NO?
- */
+*/
 
 /* FASE 1: CREARE FILE JSON
     - Dovrebbe avere un resoconto che riguardi successo, fallimento, saltati (nome progetto, nome classe, nomi tests)
     - Modifica se il file esiste già (vari rami) oppure lo crea di nuovo sulla base dei risultati della classe
     - Per test singolo (si possono anche impostare come oggetti della classe) il cambiamento per i test singoli, ma test per classe
- */
+*/
 
 /* INFORMAZIONI
     - Baeldung (ca. 2017) : https://www.baeldung.com/junit-testwatcher
-
- */
+*/
 
 /* Appunti vari:
     Rule implementa una istanza ogni volta che viene lanciato un test e questo test deve andare a modificare una variabile locale
     Ma si puo' anche creare una classe
     Vogliamo una classe che implementi una interfaccia e compia dei risultati!!
+    TestImplementation!!!
 */
 
 
@@ -126,6 +124,12 @@ class ExampleInstrumentedTest: TestWatcherFrame() {
     /*@get:ClassRule
     public val watchman: TestRule? = MyTestWatcher()*/
 
+    /*@AfterClass
+    open fun after_Class() {
+        Log.d("giuseppeRisultati", "terminata la classe!!!!!!!!!!!")
+        println("terminata la classe!!!!!!")
+    }*/
+
     @Test
     fun A_useAppContext() {
 
@@ -134,7 +138,7 @@ class ExampleInstrumentedTest: TestWatcherFrame() {
         try {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-            assertEquals("com.example.verifica", appContext.packageName)
+            assertEquals("com.example.verific", appContext.packageName)
 
             //una volta verificato si dovrebbe poter scrivere
             val context= InstrumentationRegistry.getInstrumentation().targetContext
@@ -156,7 +160,7 @@ class ExampleInstrumentedTest: TestWatcherFrame() {
     @Test
     fun C_useAppContext(){
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.verifica", appContext.packageName)
+        assertEquals("com.example.verific", appContext.packageName)
     }
 
     @Test
