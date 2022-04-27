@@ -138,7 +138,7 @@ class ExampleInstrumentedTest: TestWatcherFrame() {
         try {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-            assertEquals("com.example.verific", appContext.packageName)
+            assertEquals("com.example.verifica", appContext.packageName)
 
             //una volta verificato si dovrebbe poter scrivere
             val context= InstrumentationRegistry.getInstrumentation().targetContext
@@ -160,7 +160,7 @@ class ExampleInstrumentedTest: TestWatcherFrame() {
     @Test
     fun C_useAppContext(){
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.verific", appContext.packageName)
+        assertEquals("com.example.verifica", appContext.packageName)
     }
 
     @Test

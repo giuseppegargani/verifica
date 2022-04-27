@@ -26,5 +26,6 @@ package com.example.testwatcherlibrary
 data class TestClass (var listaClassi: MutableList<SingleClass>)
 
 data class SingleClass(var listaTests: MutableList<SingleTest>)
+//data class SingleClass(var listaTests: SingleTest)
 
 data class SingleTest ( var nameTest: String, var outcome: String, var altriElementi: String? = null )
