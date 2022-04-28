@@ -77,12 +77,14 @@ open class TestWatcherExample: TestWatcher() {
         super.starting(description)
         Log.d("giuseppeRisultati", "Test iniziato")
         println("iniziato il Test!!!!!!")
+        TestWatcherFrame.nomeClasseAttuale = javaClass.simpleName
+        TestWatcherFrame.nomePacchetto = javaClass.`package`?.name ?: ""
     }
 
     override fun succeeded(description: Description?) {
         super.succeeded(description)
         TestWatcherFrame.aggiungiSuccessi(TestWatcherFrame.TestResultStatus.SUCCESSFUL)
-        Log.d("giuseppeRisultati", "nuovo TESTWATCHER!!!!!!!!!!!!!!!! ${description} ha avuto successo e nome ${description?.methodName}")
+        Log.d("giuseppeRisultati", "nuovo TESTWATCHER!!!!!!!!!!!!!!!! ${description} ha avuto successo e nome ${description?.methodName} e nome ${javaClass.simpleName} e package ${ javaClass.`package`?.name}")
         println("nuovo TESTWATCHER!!!!!!!!!!!!!!! ${description} ha avuto successo e nome classe ${description?.className}")
     }
 
