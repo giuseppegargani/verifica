@@ -116,6 +116,23 @@ open class TestWatcherFrame {
             val otherList = gson.fromJson<List<String>>(jsonString, sType)
             Log.d("giuseppeJson", "otherList $otherList")*/
 
+            //VERIFICA CHE VEDE LA DIRECTORY Esterna di salvataggio dati
+            val path2 = "src/test"
+            val fileDirectory = File(path2)
+            val files = fileDirectory.listFiles()
+            files.map { Log.d("giuseppeLista", "ecco un file $it") }
+            //Log.d("giuseppeLista", "lista dei files ${files.map {  }}")
+            val file2 = File(path2, "risultati.txt")
+            val absolutePath = file2.absolutePath
+            Log.d("giuseppeJson", "ECCO LA PATH: $file2 e absolute $absolutePath")
+            println(absolutePath)
+
+            val file3 = File("src/resources/run.txt")
+            file.parentFile.mkdirs()
+            val writer = FileWriter(file3)
+            writer.append("this is a test")
+            writer.close()
+
             //un test singolo (con la data class)
             var elementoSingolo = SingleTest("primo Test", "Success")
             var secondoElemento = SingleTest("secondo test", "Success")
@@ -132,7 +149,7 @@ open class TestWatcherFrame {
             val path: File = context.getExternalFilesDir(null)!!
             Log.d("giuseppe", "nome directory $path")
             val file = File(path, "risultato.txt")*/
-            val stream = FileOutputStream(file)
+            val stream = FileOutputStream(file2)
             stream.use { stream ->
                 stream.write(jsonStringLista.toByteArray())
             }
